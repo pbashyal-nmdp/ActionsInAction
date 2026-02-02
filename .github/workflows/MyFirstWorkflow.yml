@@ -4,12 +4,23 @@ on:
   push:
     branches:
       - main
+      - 'release/**'      
+      
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'doc/**'
 
+  schedule:
+    - cron: '0 0 1 */3 *'
+    
   workflow_dispatch:
 
-jobs:
+# logic of the workflow 
+jobs: 
   MyFirstJob:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # runner
     steps:
       - run: echo "👋🏾 Hello World!"
 
@@ -20,4 +31,24 @@ jobs:
         run: |
           echo "This repository ${{ github.repository }} contains the following files:"
           tree
-          
+
+  MySecondJob:
+    runs-on: ubuntu-latest
+    needs: MyFirstJob
+    steps:
+      - run: "echo Job: ${{ github.job }}"
+
+  MyThirdJob:
+    runs-on: ubuntu-latest
+    needs: MyFirstJob
+    steps:
+      - run: "echo Job: ${{ github.job }}"
+
+  LastJob:
+    runs-on: ubuntu-latest
+    needs:
+      - MySecondJob
+      - MyThirdJob
+    steps:
+      - run: "echo Job: ${{ github.job }}"
+      
