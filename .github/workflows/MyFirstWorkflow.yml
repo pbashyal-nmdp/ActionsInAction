@@ -25,24 +25,3 @@ jobs:
         run: |
           echo "This repository ${{ github.repository }} contains the following files:"
           tree
-
-  MySecondJob:
-    runs-on: ubuntu-latest
-    needs: MyFirstJob
-    steps:
-      - run: "echo Job: ${{ github.job }}"
-
-  MyThirdJob:
-    runs-on: ubuntu-latest
-    needs: MyFirstJob
-    steps:
-      - run: "echo Job: ${{ github.job }}"
-
-  LastJob:
-    runs-on: ubuntu-latest
-    needs:
-      - MySecondJob
-      - MyThirdJob
-    steps:
-      - run: "echo Job: ${{ github.job }}"
-      
