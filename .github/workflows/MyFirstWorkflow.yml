@@ -11,9 +11,6 @@ on:
       - main
     paths:
       - 'doc/**'
-
-  schedule:
-    - cron: '0 0 1 */3 *'
     
   workflow_dispatch:
 
