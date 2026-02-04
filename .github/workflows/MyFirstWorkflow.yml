@@ -16,21 +16,29 @@ jobs:
   MyFirstJob:
     runs-on: ubuntu-latest # runner
     steps:
-      - run: echo "👋🏾 Hello World!"
+      - name: Step1
+        id: job1-step1
+        run: |
+          echo "👋🏾 Hello World!"
+          echo "hi=👋" >> "$GITHUB_OUTPUT"
 
       - name: Checkout
+        id: Step2
         uses: actions/checkout@v6.0.2
 
       - name: List files in repository
+        id: list-files
         run: |
           echo "This repository ${{ github.repository }} contains the following files:"
           tree
+          echo "We said: ${{ steps.job1-step1.outputs.hi }}"
 
   MySecondJob:
     runs-on: ubuntu-latest
     needs: MyFirstJob
     steps:
       - run: "echo Job: ${{ github.job }}"
+      - run: echo "
 
   MyThirdJob:
     runs-on: ubuntu-latest
