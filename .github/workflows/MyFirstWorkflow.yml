@@ -34,6 +34,7 @@ jobs:
           echo "This repository ${{ github.repository }} contains the following files:"
           tree
           echo "We said: ${{ steps.job1-step1.outputs.hi }}"
+          echo "Job1 said: ${{ env.hi }} in color: ${{ env.color }}"
 
       - name: Summary
         run: echo "### First Job Complete! 👋" >> $GITHUB_STEP_SUMMARY
