@@ -35,8 +35,8 @@ jobs:
           tree
           echo "We said: ${{ steps.job1-step1.outputs.hi }}"
           echo "Job1 said: ${{ env.hi }} in color: ${{ env.color }}"
-          echo "Secret : ${{ secrets.ENVIRONMENT }}"
-          echo "Variable : ${{ vars.WEATHER }}"
+          echo "Secret : ${{ secrets.REPO_GOOD }}"
+          echo "Variable : ${{ vars.PROCESS_RULES }}"
 
       - name: Summary
         run: echo "### First Job Complete! 👋" >> $GITHUB_STEP_SUMMARY
