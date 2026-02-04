@@ -21,7 +21,8 @@ jobs:
         run: |
           echo "👋🏾 Hello World!"
           echo "hi=👋" >> "$GITHUB_OUTPUT"
-          echo "hi=🎉" >> "$GITHUB_ENV"
+          echo "hi=Greetings" >> "$GITHUB_ENV"
+          echo "color=yellow" >> "$GITHUB_ENV"
 
       - name: Checkout
         id: Step2
@@ -43,7 +44,7 @@ jobs:
     steps:
       - run: |
           echo "Job: ${{ github.job }}"
-          echo "Job1 said: ${{ env.hi }}"
+          echo "Job1 said: ${{ env.hi }} in color: ${{ env.color }}"
       - name: Summary
         run: echo "### Second Job Complete! 👋" >> $GITHUB_STEP_SUMMARY
 
