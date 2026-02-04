@@ -21,6 +21,7 @@ jobs:
         run: |
           echo "👋🏾 Hello World!"
           echo "hi=👋" >> "$GITHUB_OUTPUT"
+          echo "hi=🎉" >> "$GITHUB_ENV"
 
       - name: Checkout
         id: Step2
@@ -37,8 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: MyFirstJob
     steps:
-      - run: "echo Job: ${{ github.job }}"
-      - run: echo "
+      - run: |
+          echo "Job: ${{ github.job }}"
+          echo "Job1 said: ${{ env.hi }}"
 
   MyThirdJob:
     runs-on: ubuntu-latest
