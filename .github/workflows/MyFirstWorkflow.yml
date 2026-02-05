@@ -68,5 +68,12 @@ jobs:
     steps:
       - run: "echo Job: ${{ github.job }}"
 
+      - name: Python Version
+        run: |
+          import os, sys
+          print("Platform:", sys.platform)
+          print("Uname:", os.uname())
+        shell: python
+
       - name: Summary
         run: echo "### Last Job Complete! 👋" >> $GITHUB_STEP_SUMMARY
